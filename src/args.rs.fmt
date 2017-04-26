@@ -1,0 +1,23 @@
+use clap::{Arg, App, ArgMatches, SubCommand};
+
+pub fn prepare<'a, 'a>() -> App<'a, 'a> {
+    return App::new("My Super Program")
+      .version("1.0")
+      .author("Matheus T. <me@mteixeira.me>")
+      .about("Last working directory")
+      .subcommand(SubCommand::with_name("add")                        // The name we call argument with
+        .about("Adds files to myapp")           // The message displayed in "myapp -h"
+                                                // or "myapp help"
+        .arg(Arg::with_name("path")            // And their own arguments
+          .help("the path to add")
+          .index(1)
+          .required(true)))
+      .subcommand(SubCommand::with_name("search")                        // The name we call argument with
+        .about("Searchs last working paths")           // The message displayed in "myapp -h"
+                                                // or "myapp help"
+        .arg(Arg::with_name("term")            // And their own arguments
+          .help("the term to search")
+          .index(1)
+          .required(true)));
+}
+
