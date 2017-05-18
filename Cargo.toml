@@ -1,7 +1,0 @@
-[package]
-name = "lwd"
-version = "0.1.0"
-authors = ["Matheus Teixeira <matheus.mtxr@gmail.com>"]
-
-[dependencies]
-clap = "~2.19.0"
