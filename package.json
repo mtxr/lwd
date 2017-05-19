@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/lwd.js",
   "scripts": {
-    "preinstall": "./node_modules/.bin/gulp compile",
+    "postinstall": "./node_modules/.bin/gulp compile",
     "start": "node ./bin/lwd.js"
   },
   "author": "Matheus Teixeira <me@mteixeira.me>",
