@@ -57,7 +57,7 @@ class Lwd {
       if(!re.test(p)) {
         return
       }
-      process.stdout.write(`${p.replace(cwd, '')}\n`)
+      process.stdout.write(`${p.replace(cwd, '').replace(process.cwd(), '.')}\n`)
     })
     return this
   }

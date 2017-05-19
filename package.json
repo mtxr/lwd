@@ -7,10 +7,7 @@
     "preinstall": "gulp compile",
     "start": "node ./bin/lwd.js"
   },
-  "bin": {
-    "lwd": "./bin/lwd.js"
-  },
-  "author": "",
+  "author": "Matheus Teixeira <me@mteixeira.me>",
   "license": "ISC",
   "devDependencies": {
     "gulp": "^3.9.1",
