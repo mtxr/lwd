@@ -40,7 +40,7 @@ class Lwd {
 
   add() {
     if (this.lwdList.indexOf(this.param) >= 0) {
-      return
+      return this
     }
     this.lwdList = [path.normalize(this.param)].concat(this.lwdList)
     if (this.lwdList.length > this.maxSize) {
