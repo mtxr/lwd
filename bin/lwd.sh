@@ -1,12 +1,13 @@
 #!/bin/zsh
 
-if [[ -n ${ZSH_VERSION-} ]]; then
-  autoload -U +X bashcompinit && bashcompinit
-fi
-
 SCRIPT=`realpath -s $0`
 SCRIPTPATH=`dirname $SCRIPT`
 LWDJS=$SCRIPTPATH/lwd.js
+
+if [ ! -d "$SCRIPTPATH/../node_modules/" ]; then
+    echo "Installing lwd dependencies"
+    npm install --prefix $SCRIPTPATH/../
+fi
 
 function cd() {
     builtin cd $@
