@@ -11,21 +11,30 @@ fi
 
 function cd() {
     builtin cd $@
-    node $LWDJS add $@
+    (node $LWDJS add "$PWD" &> /dev/null &)
+    return 0    
 }
 
 function _complete_lwd() {
     local cur
+    local prev
     local IFS=$'\n'
     cur="${COMP_WORDS[COMP_CWORD]}"
-    local opts=$(node $LWDJS search "$cur")
-    COMPREPLY=( ${opts[@]} )
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
+    COMPREPLY=( )
+    if [ "$prev" = "lwd" ];then
+        local opts=$(node $LWDJS search "$cur")
+        COMPREPLY=( "clear" ${opts[@]} )
+    fi
     return 0
 }
 
 function lwd() {
     if [ "$#" = "0" ]; then
         cd $(node $LWDJS)
+        return 0
+    elif [ "$1" = "clear" ]; then
+        rm $HOME/.lwdhistory &> /dev/null && echo "LWD history cleared"
         return 0
     fi
     cd $@
