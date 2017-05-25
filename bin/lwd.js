@@ -36,7 +36,7 @@ var Lwd = (function () {
     };
     Lwd.prototype.add = function () {
         if (this.lwdList.indexOf(this.param) >= 0) {
-            return this;
+            this.lwdList.splice(this.lwdList.indexOf(this.param), 1);
         }
         this.lwdList = [path.normalize(this.param)].concat(this.lwdList);
         if (this.lwdList.length > this.maxSize) {
