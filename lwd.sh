@@ -13,7 +13,7 @@ _lwd_search() {
 
   local search="$1"
 
-  cat $LWDHISTORY | grep "$search" --color=none
+  cat $LWDHISTORY | grep "$search" --color=none | sed "s|^$PWD|.|" | sed "s|^$PWD/||" | sed "s|^$HOME|~|"
 }
 
 _lwd_last() {
