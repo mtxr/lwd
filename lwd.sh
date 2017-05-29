@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-SCRIPT=`realpath -s $0`
+SCRIPT=$(python -c 'import os,sys;print(os.path.realpath(sys.argv[1]))' $0)
 SCRIPTPATH=`dirname $SCRIPT`
 LWDHISTORY=${LWDHISTORY:-"$HOME/.lwdhistory"}
 LWDHISTORYSIZE=${LWDHISTORYSIZE:-10}
