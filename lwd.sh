@@ -48,8 +48,8 @@ _lwd_add() {
       if [ "$pathtoadd" = "" ]; then
         return 0
       fi
-      local PARSEDPATHS=$(grep -vwF "${pathtoadd}" "$LWDHISTORY" | sed '/^\s*$/d')
-      echo "$pathtoadd\n$PARSEDPATHS" > $LWDHISTORY && return 0
+      local PARSEDPATHS=$(cat $LWDHISTORY)
+      echo "$pathtoadd\n$PARSEDPATHS" | perl -lne 's/\s*$//; print if ! $a{$_}++' > $LWDHISTORY && return 0
     ) &
   )
   return 0
