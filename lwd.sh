@@ -9,7 +9,7 @@ lwd() {
     return 0
   fi
 
-  local last=$(head -n 1 $LWDHISTORY)
+  local last=$(cat $LWDHISTORY)
   if [ ! -d "$last" ];then
     echo "Directory $last does not exist anymore." && return 1
   fi
@@ -19,5 +19,5 @@ lwd() {
 
 # override current cd fn to allow adding to lwd history
 cd() {
-    builtin cd $@ && (echo -n "$PWD" > $LWDHISTORY &) && return 0
+  builtin cd $@ && echo -n "$PWD" > $LWDHISTORY && return 0
 }
