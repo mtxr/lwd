@@ -17,7 +17,17 @@ lwd() {
   builtin cd "$last" && return 0
 }
 
-# override current cd fn to allow adding to lwd history
-cd() {
-  builtin cd $@ && echo -n "$PWD" > $LWDHISTORY && return 0
+__lwd_chpwd_fn_hook () {
+  (echo -n "$PWD" > $LWDHISTORY &)
 }
+
+if [ -n "$ZSH_VERSION" ]; then
+  if [[ ! " ${chpwd_functions[@]} " =~ " __lwd_chpwd_fn_hook " ]]; then
+    chpwd_functions=(${chpwd_functions[@]} "__lwd_chpwd_fn_hook")
+  fi
+else
+  # override current cd fn to allow adding to lwd history
+  cd() {
+    builtin cd $@ && __lwd_chpwd_fn_hook && return 0
+  }
+fi
