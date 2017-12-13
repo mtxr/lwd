@@ -22,8 +22,8 @@ __lwd_chpwd_fn_hook () {
 }
 
 if [ -n "$ZSH_VERSION" ]; then
-  if [[ ! " ${chpwd_functions[@]} " =~ " __lwd_chpwd_fn_hook " ]]; then
-    chpwd_functions=(${chpwd_functions[@]} "__lwd_chpwd_fn_hook")
+  if [[ ! " ${precmd_functions[@]} " =~ " __lwd_chpwd_fn_hook " ]]; then
+    precmd_functions=(${precmd_functionsf[@]} "__lwd_chpwd_fn_hook")
   fi
 else
   # override current cd fn to allow adding to lwd history
